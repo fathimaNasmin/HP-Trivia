@@ -14,6 +14,7 @@ struct ContentView: View {
 	@State private var scalePlayButton = false
 	@State private var moveBackgroundImage = false
 	@State private var animateViewsIn = false
+	@State private var showInstruction = false
 	
     var body: some View {
 		GeometryReader { geo in
@@ -79,10 +80,12 @@ struct ContentView: View {
 					HStack {
 						Spacer()
 						
+						// Info button
 						VStack {
 							if animateViewsIn {
 								Button {
 									// show instruction screen
+									showInstruction.toggle()
 								} label: {
 									Image(systemName: "info.circle.fill")
 										.font(.largeTitle)
@@ -90,6 +93,9 @@ struct ContentView: View {
 										.shadow(color: .black, radius: 5)
 								}
 								.transition(.offset(x: -geo.size.width/4))
+								.sheet(isPresented: $showInstruction) {
+									InstructionView()
+								}
 							}
 						}
 						.animation(.easeOut(duration: 0.7).delay(2.7), value: animateViewsIn)
@@ -155,7 +161,7 @@ struct ContentView: View {
 		.ignoresSafeArea()
 		.onAppear() {
 			animateViewsIn = true
-			playAudio()
+//			playAudio()
 		}
     }
 	
