@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
 	
 	@State private var scalePlayButton = false
+	@State private var moveBackgroundImage = false
 	
     var body: some View {
 		GeometryReader { geo in
@@ -18,6 +19,12 @@ struct ContentView: View {
 					.resizable()
 					.frame(width: geo.size.width * 3, height: geo.size.height)
 					.padding(.top, 3)
+					.offset(x: moveBackgroundImage ? geo.size.width/1.1 : -geo.size.width/1.1 )
+					.onAppear {
+						withAnimation(.linear(duration: 60).repeatForever()) {
+							moveBackgroundImage.toggle()
+						}
+					}
 				
 				VStack {
 					VStack {
