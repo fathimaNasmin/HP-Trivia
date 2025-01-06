@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import AVKit
 
 struct ContentView: View {
 	
+	@State private var audioPlayer: AVAudioPlayer!
 	@State private var scalePlayButton = false
 	@State private var moveBackgroundImage = false
 	
@@ -117,7 +119,26 @@ struct ContentView: View {
 			
 		}
 		.ignoresSafeArea()
+		.onAppear() {
+//			playAudio()
+		}
     }
+	
+	// Function to initialize and play audio.
+	private func playAudio() {
+		if let sound = Bundle.main.path(forResource: "magic-in-the-air", ofType: "mp3") {
+			do {
+				audioPlayer = try AVAudioPlayer(contentsOf: URL(filePath: sound))
+				audioPlayer.numberOfLoops = -1 // play audio infinity; never stops
+				audioPlayer.play()
+			}catch {
+				print("There was an issue playing the sound: \(error)")
+			}
+		} else {
+			print("Couldn't find the sound file")
+		}
+		
+	}
 }
 
 #Preview {
