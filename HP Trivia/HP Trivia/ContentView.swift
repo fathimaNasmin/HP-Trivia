@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
+	
+	@State private var scalePlayButton = false
+	
     var body: some View {
 		GeometryReader { geo in
 			ZStack {
@@ -70,12 +73,18 @@ struct ContentView: View {
 							// Play button action
 						} label: {
 							Text("Play")
-								.font(.title2)
+								.font(.title)
 								.foregroundColor(.white)
 								.padding(.vertical, 7)
 								.padding(.horizontal, 50)
 								.background(.brown)
 								.cornerRadius(7)
+						}
+						.scaleEffect(scalePlayButton ? 1.2 : 1)
+						.onAppear {
+							withAnimation(.easeInOut(duration: 1.3).repeatForever()) {
+								scalePlayButton.toggle()
+							}
 						}
 						
 						Spacer()
