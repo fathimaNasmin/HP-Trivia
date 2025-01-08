@@ -9,6 +9,7 @@ import SwiftUI
 
 struct GamePlayView: View {
 	@Environment(\.dismiss) private var dismiss
+	@Namespace private var namespace // to connect with view eachother.
 	@State private var animateViewIn = false
 	@State private var tappedCorrectAnswer = false
 	@State private var hintWiggle = false
@@ -16,6 +17,9 @@ struct GamePlayView: View {
 	@State private var movePointsToScores = false
 	@State private var revealHint = false
 	@State private var revealBook = false
+	
+	let tempAnswers = [true, false, false, false]
+	
 	
     var body: some View {
 		GeometryReader { geo in
@@ -143,20 +147,51 @@ struct GamePlayView: View {
 					// MARK: Answers
 					LazyVGrid(columns: [GridItem(), GridItem()]) {
 						ForEach(1..<5){ i in
-							VStack {
-								if animateViewIn {
-									Text("Answer \(i)")
-										.minimumScaleFactor(0.5)
-										.multilineTextAlignment(.center)
-										.padding(10)
-										.frame(width: geo.size.width / 2.15, height: 80)
-										.background(.green.opacity(0.5))
-										.cornerRadius(25)
-										.transition(.scale)
-								}
+							if tempAnswers[i-1] == true {
+								VStack {
+									if animateViewIn {
+										if tappedCorrectAnswer == false {
+											Text("Answer \(i)")
+												.minimumScaleFactor(0.5)
+												.multilineTextAlignment(.center)
+												.padding(10)
+												.frame(width: geo.size.width / 2.15, height: 80)
+												.background(.green.opacity(0.5))
+												.cornerRadius(25)
+												.transition(
+													AsymmetricTransition(
+														insertion: .scale,
+														removal: .scale(5).combined(with: .opacity.animation(.easeOut(duration: 1)))
+													)
+												)
+												.matchedGeometryEffect(id: "answer", in: namespace)
+												.onTapGesture {
+													withAnimation(.easeOut(duration: 1)) {
+														tappedCorrectAnswer = true
+													}
+												}
+										}
+									}
 									
+								}
+								.animation(.easeOut(duration: 1).delay(1.5), value: animateViewIn)
+							} else {
+								VStack {
+									if animateViewIn {
+										Text("Answer \(i)")
+											.minimumScaleFactor(0.5)
+											.multilineTextAlignment(.center)
+											.padding(10)
+											.frame(width: geo.size.width / 2.15, height: 80)
+											.background(.green.opacity(0.5))
+											.cornerRadius(25)
+											.transition(.scale)
+									}
+									
+								}
+								.animation(.easeOut(duration: 1).delay(1.5), value: animateViewIn)
+
 							}
-							.animation(.easeOut(duration: 1).delay(1.5), value: animateViewIn)
 								
 						}
 					}
@@ -215,6 +250,7 @@ struct GamePlayView: View {
 							.background(.green.opacity(0.5))
 							.cornerRadius(25)
 							.scaleEffect(2)
+							.matchedGeometryEffect(id: "answer", in: namespace)
 					}
 					
 					Spacer()
