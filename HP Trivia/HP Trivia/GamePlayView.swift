@@ -8,11 +8,14 @@
 import SwiftUI
 
 struct GamePlayView: View {
+	@Environment(\.dismiss) private var dismiss
 	@State private var animateViewIn = false
 	@State private var tappedCorrectAnswer = false
 	@State private var hintWiggle = false
 	@State private var scaleNextButton = false
 	@State private var movePointsToScores = false
+	@State private var revealHint = false
+	@State private var revealBook = false
 	
     var body: some View {
 		GeometryReader { geo in
@@ -26,7 +29,7 @@ struct GamePlayView: View {
 				VStack {
 					HStack {
 						Button("End Game"){
-							// TODO: End game
+							dismiss()
 						}
 						.font(.title3)
 						.foregroundColor(.white)
@@ -73,6 +76,22 @@ struct GamePlayView: View {
 												hintWiggle = true
 											}
 									}
+									.onTapGesture {
+										withAnimation(.easeOut(duration: 1)) {
+											revealHint = true
+										}
+									}
+									.rotation3DEffect(.degrees(revealHint ? 1440 : 0), axis: (x: 0, y: 1, z: 0))
+									.scaleEffect(revealHint ? 5 : 1)
+									.opacity(revealHint ? 0 : 1)
+									.offset(x: revealHint ? geo.size.width / 2 : 0)
+									.overlay {
+										Text("The man who is _______")
+											.minimumScaleFactor(0.5)
+											.multilineTextAlignment(.center)
+											.opacity(revealHint ? 1 : 0)
+											.scaleEffect(revealHint ? 1.2 : 0)
+									}
 							}
 						}
 						.animation(.easeOut(duration: 1.5).delay(2), value: animateViewIn)
@@ -95,6 +114,23 @@ struct GamePlayView: View {
 										withAnimation(.easeInOut(duration: 0.1).repeatCount(9).delay(5).repeatForever()) {
 											hintWiggle = true
 										}
+									}
+									.onTapGesture {
+										withAnimation(.easeOut(duration: 1)) {
+											revealBook = true
+										}
+									}
+									.rotation3DEffect(.degrees(revealBook ? 1440 : 0), axis: (x: 0, y: 1, z: 0))
+									.scaleEffect(revealBook ? 5 : 1)
+									.opacity(revealBook ? 0 : 1)
+									.offset(x: revealBook ? -geo.size.width / 2 : 0)
+									.overlay {
+										Image("hp1")
+											.resizable()
+											.scaledToFit()
+											.padding(.trailing)
+											.opacity(revealBook ? 1 : 0)
+											.scaleEffect(revealBook ? 1.8 : 1)
 									}
 								
 							}
@@ -210,8 +246,8 @@ struct GamePlayView: View {
 		}
 		.ignoresSafeArea()
 		.onAppear {
-//			animateViewIn = true
-			tappedCorrectAnswer = true
+			animateViewIn = true
+//			tappedCorrectAnswer = true
 		}
     }
 }
