@@ -16,6 +16,8 @@
 		D9D2A76D2D2FFA7600683890 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D2A76B2D2FFA7600683890 /* SettingsView.swift */; };
 		D9D2A76E2D2FFA7600683890 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D2A7682D2FFA7600683890 /* Constants.swift */; };
 		D9D2A76F2D2FFA7600683890 /* InstructionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D2A76A2D2FFA7600683890 /* InstructionView.swift */; };
+		D9D2A7712D2FFC1400683890 /* HPConfig.storekit in Resources */ = {isa = PBXBuildFile; fileRef = D9D2A7702D2FFC1400683890 /* HPConfig.storekit */; };
+		D9D2A7732D2FFCED00683890 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D2A7722D2FFCED00683890 /* Store.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,8 @@
 		D9D2A7692D2FFA7600683890 /* GamePlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePlayView.swift; sourceTree = "<group>"; };
 		D9D2A76A2D2FFA7600683890 /* InstructionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionView.swift; sourceTree = "<group>"; };
 		D9D2A76B2D2FFA7600683890 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		D9D2A7702D2FFC1400683890 /* HPConfig.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = HPConfig.storekit; sourceTree = "<group>"; };
+		D9D2A7722D2FFCED00683890 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -85,6 +89,8 @@
 				D9B9E73D2D2B4ABC00CC2DB7 /* Preview Content */,
 				D9B9E73E2D2B4ABC00CC2DB7 /* Assets.xcassets */,
 				D9B9E73F2D2B4ABC00CC2DB7 /* ContentView.swift */,
+				D9D2A7702D2FFC1400683890 /* HPConfig.storekit */,
+				D9D2A7722D2FFCED00683890 /* Store.swift */,
 				D9B9E7422D2B4ABC00CC2DB7 /* HP_TriviaApp.swift */,
 				D9B9E7492D2B4ABC00CC2DB7 /* trivia.json */,
 			);
@@ -157,6 +163,7 @@
 			files = (
 				D9B9E74B2D2B4ABC00CC2DB7 /* Preview Assets.xcassets in Resources */,
 				D9B9E74C2D2B4ABC00CC2DB7 /* Assets.xcassets in Resources */,
+				D9D2A7712D2FFC1400683890 /* HPConfig.storekit in Resources */,
 				D9B9E7552D2B4ABC00CC2DB7 /* trivia.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -168,6 +175,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9D2A7732D2FFCED00683890 /* Store.swift in Sources */,
 				D9D2A76C2D2FFA7600683890 /* GamePlayView.swift in Sources */,
 				D9D2A76D2D2FFA7600683890 /* SettingsView.swift in Sources */,
 				D9D2A76E2D2FFA7600683890 /* Constants.swift in Sources */,
