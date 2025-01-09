@@ -12,6 +12,10 @@
 		D9B9E7552D2B4ABC00CC2DB7 /* trivia.json in Resources */ = {isa = PBXBuildFile; fileRef = D9B9E7492D2B4ABC00CC2DB7 /* trivia.json */; };
 		D9B9E7562D2B4ABC00CC2DB7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B9E73F2D2B4ABC00CC2DB7 /* ContentView.swift */; };
 		D9B9E7572D2B4ABC00CC2DB7 /* HP_TriviaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B9E7422D2B4ABC00CC2DB7 /* HP_TriviaApp.swift */; };
+		D9D2A76C2D2FFA7600683890 /* GamePlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D2A7692D2FFA7600683890 /* GamePlayView.swift */; };
+		D9D2A76D2D2FFA7600683890 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D2A76B2D2FFA7600683890 /* SettingsView.swift */; };
+		D9D2A76E2D2FFA7600683890 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D2A7682D2FFA7600683890 /* Constants.swift */; };
+		D9D2A76F2D2FFA7600683890 /* InstructionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D2A76A2D2FFA7600683890 /* InstructionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +25,10 @@
 		D9B9E73F2D2B4ABC00CC2DB7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D9B9E7422D2B4ABC00CC2DB7 /* HP_TriviaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HP_TriviaApp.swift; sourceTree = "<group>"; };
 		D9B9E7492D2B4ABC00CC2DB7 /* trivia.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = trivia.json; sourceTree = "<group>"; };
+		D9D2A7682D2FFA7600683890 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		D9D2A7692D2FFA7600683890 /* GamePlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePlayView.swift; sourceTree = "<group>"; };
+		D9D2A76A2D2FFA7600683890 /* InstructionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionView.swift; sourceTree = "<group>"; };
+		D9D2A76B2D2FFA7600683890 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -69,6 +77,10 @@
 		D9B9E74A2D2B4ABC00CC2DB7 /* HP Trivia */ = {
 			isa = PBXGroup;
 			children = (
+				D9D2A7682D2FFA7600683890 /* Constants.swift */,
+				D9D2A7692D2FFA7600683890 /* GamePlayView.swift */,
+				D9D2A76A2D2FFA7600683890 /* InstructionView.swift */,
+				D9D2A76B2D2FFA7600683890 /* SettingsView.swift */,
 				D9B9E7582D2B4ADE00CC2DB7 /* Audio */,
 				D9B9E73D2D2B4ABC00CC2DB7 /* Preview Content */,
 				D9B9E73E2D2B4ABC00CC2DB7 /* Assets.xcassets */,
@@ -156,6 +168,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9D2A76C2D2FFA7600683890 /* GamePlayView.swift in Sources */,
+				D9D2A76D2D2FFA7600683890 /* SettingsView.swift in Sources */,
+				D9D2A76E2D2FFA7600683890 /* Constants.swift in Sources */,
+				D9D2A76F2D2FFA7600683890 /* InstructionView.swift in Sources */,
 				D9B9E7562D2B4ABC00CC2DB7 /* ContentView.swift in Sources */,
 				D9B9E7572D2B4ABC00CC2DB7 /* HP_TriviaApp.swift in Sources */,
 			);
