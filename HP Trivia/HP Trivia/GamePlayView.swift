@@ -10,6 +10,8 @@ import AVKit
 
 struct GamePlayView: View {
 	@Environment(\.dismiss) private var dismiss
+	@EnvironmentObject private var game: GameViewModel
+	
 	@Namespace private var namespace // to connect with view eachother.
 	@State private var musicPlayer: AVAudioPlayer!
 	@State private var sfxPlayer: AVAudioPlayer!
@@ -389,4 +391,5 @@ struct GamePlayView: View {
 
 #Preview {
     GamePlayView()
+		.environmentObject(GameViewModel())
 }

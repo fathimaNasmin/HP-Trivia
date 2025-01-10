@@ -19,6 +19,7 @@
 		D9D2A7712D2FFC1400683890 /* HPConfig.storekit in Resources */ = {isa = PBXBuildFile; fileRef = D9D2A7702D2FFC1400683890 /* HPConfig.storekit */; };
 		D9D2A7732D2FFCED00683890 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D2A7722D2FFCED00683890 /* Store.swift */; };
 		D9D2A7752D30AF9900683890 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D2A7742D30AF9900683890 /* Question.swift */; };
+		D9D2A7772D313BB600683890 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D2A7762D313BB600683890 /* GameViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		D9D2A7702D2FFC1400683890 /* HPConfig.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = HPConfig.storekit; sourceTree = "<group>"; };
 		D9D2A7722D2FFCED00683890 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		D9D2A7742D30AF9900683890 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
+		D9D2A7762D313BB600683890 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -84,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				D9D2A7682D2FFA7600683890 /* Constants.swift */,
+				D9D2A7762D313BB600683890 /* GameViewModel.swift */,
 				D9D2A7692D2FFA7600683890 /* GamePlayView.swift */,
 				D9D2A76A2D2FFA7600683890 /* InstructionView.swift */,
 				D9D2A76B2D2FFA7600683890 /* SettingsView.swift */,
@@ -178,6 +181,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9D2A7772D313BB600683890 /* GameViewModel.swift in Sources */,
 				D9D2A7732D2FFCED00683890 /* Store.swift in Sources */,
 				D9D2A7752D30AF9900683890 /* Question.swift in Sources */,
 				D9D2A76C2D2FFA7600683890 /* GamePlayView.swift in Sources */,
