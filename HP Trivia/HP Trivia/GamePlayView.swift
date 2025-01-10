@@ -141,7 +141,7 @@ struct GamePlayView: View {
 									.opacity(revealBook ? 0 : 1)
 									.offset(x: revealBook ? -geo.size.width / 2 : 0)
 									.overlay {
-										Image("hp\(game.currentQuestion.book)")
+										Image("hp\(game.currentQuestions.book)")
 											.resizable()
 											.scaledToFit()
 											.padding(.trailing)
@@ -271,7 +271,6 @@ struct GamePlayView: View {
 					.animation(.easeInOut(duration: tappedCorrectAnswer ? 1 : 0).delay(tappedCorrectAnswer ? 1 : 0), value: tappedCorrectAnswer)
 					
 					Spacer()
-//					Spacer()
 					
 					if tappedCorrectAnswer  {
 						Text(game.correctAnswer)
@@ -296,6 +295,7 @@ struct GamePlayView: View {
 								revealBook = false
 								movePointsToScores = false
 								tappedWrongAnswers = []
+								
 								game.newQuestion()
 								
 								DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {

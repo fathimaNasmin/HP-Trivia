@@ -41,6 +41,8 @@ class GameViewModel: ObservableObject {
 	}
 	
 	func newQuestion() {
+		answers = []
+		
 		if filteredQuestions.isEmpty {
 			return
 		}
@@ -68,6 +70,8 @@ class GameViewModel: ObservableObject {
 		recentScores[2] = recentScores[1]
 		recentScores[1] = recentScores[0]
 		recentScores[0] = gameScore
+		
+		answeredQuestions = []
 	}
 	
 	func correct() {
