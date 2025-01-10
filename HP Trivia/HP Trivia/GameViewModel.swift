@@ -17,6 +17,7 @@ class GameViewModel: ObservableObject {
 	private var allQuestions: [Question] = []
 	// store asked question's id's
 	private var answeredQuestions: [Int] = []
+	private let savePath = FileManager.documentDirectory.appending(path: "SavedScores")
 	
 	var filteredQuestions: [Question] = []
 	var currentQuestion = Constants.previewQuestion
@@ -72,6 +73,26 @@ class GameViewModel: ObservableObject {
 		recentScores[0] = gameScore
 		
 		answeredQuestions = []
+		
+		saveScores()
+	}
+	
+	private func saveScores() {
+		do {
+			let data = try JSONEncoder().encode(recentScores)
+			try data.write(to: savePath)
+		}catch{
+			print("Unable to save the data: \(error)")
+		}
+	}
+	
+	func loadScores() {
+		do {
+			let data = try Data(contentsOf: savePath)
+			recentScores = try JSONDecoder().decode([Int].self, from: data)
+		} catch {
+			recentScores = [0, 0, 0]
+		}
 	}
 	
 	func correct() {
