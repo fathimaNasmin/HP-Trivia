@@ -24,7 +24,7 @@ struct SettingsView: View {
 				ScrollView {
 					LazyVGrid(columns: [GridItem(), GridItem()]) {
 						ForEach(0..<7) { i in
-							if store.books[i] == .active {
+							if store.books[i] == .active || (store.books[i] == .locked && store.purchasedIDs.contains("hp\(i+1)")) {
 								// Selected book
 								ZStack(alignment: .bottomTrailing) {
 									Image("hp\(i+1)")
@@ -38,6 +38,9 @@ struct SettingsView: View {
 										.shadow(radius: 7)
 										.foregroundColor(.green)
 										.padding(5)
+								}
+								.task {
+									store.books[i] = .active
 								}
 								.onTapGesture {
 									store.books[i] = .inactive
@@ -77,6 +80,12 @@ struct SettingsView: View {
 										.foregroundColor(.black)
 										.shadow(color:.white.opacity(0.7), radius: 7)
 										.padding(5)
+								}
+								.onTapGesture {
+									let product = store.products[i-3]
+									Task {
+										await store.purchase(product)
+									}
 								}
 							}
 					}

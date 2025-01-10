@@ -25,13 +25,16 @@ class Store: ObservableObject {
 	private var updates: Task<Void, Never>? = nil
 	
 	init() {
-		updates =
+		updates = watchForUpdate()
 	}
 	
 	
 	func loadProducts() async{
 		do {
 			products = try await Product.products(for: productIDs)
+			products.sort {
+				$0.displayName < $1.displayName
+			}
 		}catch {
 			print("Could not fetch those products: \(error)")
 		}
