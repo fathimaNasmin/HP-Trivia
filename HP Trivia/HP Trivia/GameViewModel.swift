@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 @MainActor
 class GameViewModel: ObservableObject {
@@ -21,7 +22,7 @@ class GameViewModel: ObservableObject {
 	var currentQuestions = Constants.previewQuestion
 	var answers: [String] = []
 	
-	var answer: String {
+	var correctAnswer: String {
 		currentQuestions.answers.first(where: { $0.value == true })!.key
 	}
 	
@@ -71,8 +72,9 @@ class GameViewModel: ObservableObject {
 	
 	func correct() {
 		answeredQuestions.append(currentQuestions.id)
-		
-		gameScore += questionScore
+		withAnimation {
+			gameScore += questionScore
+		}
 	}
 	
 	private func decodeQuestion() {
