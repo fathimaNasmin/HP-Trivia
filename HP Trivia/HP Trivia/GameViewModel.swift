@@ -9,6 +9,10 @@ import Foundation
 
 @MainActor
 class GameViewModel: ObservableObject {
+	@Published var gameScore = 0
+	@Published var questionScore = 5
+	@Published var recentScores = [0, 0, 0]
+	
 	private var allQuestions: [Question] = []
 	// store asked question's id's
 	private var answeredQuestions: [Int] = []
@@ -27,6 +31,12 @@ class GameViewModel: ObservableObject {
 	
 	func filterQuestions(to books: [Int]) {
 		filteredQuestions = allQuestions.filter { books.contains($0.book) }
+	}
+	
+	func startGame(){
+		gameScore = 0
+		questionScore = 5
+		answeredQuestions = []
 	}
 	
 	func newQuestion() {
@@ -49,12 +59,20 @@ class GameViewModel: ObservableObject {
 		}
 		
 		answers.shuffle()
+		
+		questionScore = 5
+	}
+	
+	func endGame() {
+		recentScores[2] = recentScores[1]
+		recentScores[1] = recentScores[0]
+		recentScores[0] = gameScore
 	}
 	
 	func correct() {
 		answeredQuestions.append(currentQuestions.id)
 		
-		// TODO: update the score
+		gameScore += questionScore
 	}
 	
 	private func decodeQuestion() {
