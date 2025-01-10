@@ -19,11 +19,11 @@ class GameViewModel: ObservableObject {
 	private var answeredQuestions: [Int] = []
 	
 	var filteredQuestions: [Question] = []
-	var currentQuestions = Constants.previewQuestion
+	var currentQuestion = Constants.previewQuestion
 	var answers: [String] = []
 	
 	var correctAnswer: String {
-		currentQuestions.answers.first(where: { $0.value == true })!.key
+		currentQuestion.answers.first(where: { $0.value == true })!.key
 	}
 	
 	init() {
@@ -55,9 +55,9 @@ class GameViewModel: ObservableObject {
 		while answeredQuestions.contains(potentialQuestion.id) {
 			potentialQuestion = filteredQuestions.randomElement()!
 		}
-		currentQuestions = potentialQuestion
+		currentQuestion = potentialQuestion
 		
-		for answer in currentQuestions.answers.keys {
+		for answer in currentQuestion.answers.keys {
 			answers.append(answer)
 		}
 		
@@ -75,7 +75,7 @@ class GameViewModel: ObservableObject {
 	}
 	
 	func correct() {
-		answeredQuestions.append(currentQuestions.id)
+		answeredQuestions.append(currentQuestion.id)
 		withAnimation {
 			gameScore += questionScore
 		}

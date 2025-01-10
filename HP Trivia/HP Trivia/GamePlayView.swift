@@ -57,7 +57,7 @@ struct GamePlayView: View {
 					// MARK: Question
 					VStack {
 						if animateViewIn {
-							Text(game.currentQuestions.question)
+							Text(game.currentQuestion.question)
 								.font(.custom(Constants.hpFont, size: 50))
 								.padding()
 								.multilineTextAlignment(.center)
@@ -98,7 +98,7 @@ struct GamePlayView: View {
 									.opacity(revealHint ? 0 : 1)
 									.offset(x: revealHint ? geo.size.width / 2 : 0)
 									.overlay {
-										Text(game.currentQuestions.hint)
+										Text(game.currentQuestion.hint)
 											.minimumScaleFactor(0.5)
 											.multilineTextAlignment(.center)
 											.opacity(revealHint ? 1 : 0)
@@ -141,7 +141,7 @@ struct GamePlayView: View {
 									.opacity(revealBook ? 0 : 1)
 									.offset(x: revealBook ? -geo.size.width / 2 : 0)
 									.overlay {
-										Image("hp\(game.currentQuestions.book)")
+										Image("hp\(game.currentQuestion.book)")
 											.resizable()
 											.scaledToFit()
 											.padding(.trailing)
@@ -162,7 +162,7 @@ struct GamePlayView: View {
 					LazyVGrid(columns: [GridItem(), GridItem()]) {
 						ForEach(Array(game.answers.enumerated()), id:\.offset) { i, answer in
 							//Correct Answers
-							if game.currentQuestions.answers[answer] == true {
+							if game.currentQuestion.answers[answer] == true {
 								VStack {
 									if animateViewIn {
 										if tappedCorrectAnswer == false {
