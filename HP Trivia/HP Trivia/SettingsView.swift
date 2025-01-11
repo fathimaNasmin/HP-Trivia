@@ -102,6 +102,7 @@ struct SettingsView: View {
 				.doneButton()
 			}
 			.padding()
+			.foregroundColor(.black)
 		}
     }
 }
