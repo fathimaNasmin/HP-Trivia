@@ -7,16 +7,9 @@
 
 import SwiftUI
 
-enum BookStatus {
-	case active
-	case inactive
-	case locked
-}
-
 struct SettingsView: View {
 	@Environment(\.dismiss) private var dismiss
-	
-	@State private var books:[BookStatus] = [.active, .active, .inactive, .locked, .locked, .locked, .locked]
+	@EnvironmentObject private var store: Store
 	
     var body: some View {
 		ZStack {
@@ -31,7 +24,7 @@ struct SettingsView: View {
 				ScrollView {
 					LazyVGrid(columns: [GridItem(), GridItem()]) {
 						ForEach(0..<7) { i in
-							if books[i] == .active {
+							if store.books[i] == .active || (store.books[i] == .locked && store.purchasedIDs.contains("hp\(i+1)")) {
 								// Selected book
 								ZStack(alignment: .bottomTrailing) {
 									Image("hp\(i+1)")
@@ -46,10 +39,15 @@ struct SettingsView: View {
 										.foregroundColor(.green)
 										.padding(5)
 								}
-								.onTapGesture {
-									books[i] = .inactive
+								.task {
+									store.books[i] = .active
+									store.saveStatus()
 								}
-							} else if books[i] == .inactive {
+								.onTapGesture {
+									store.books[i] = .inactive
+									store.saveStatus()
+								}
+							} else if store.books[i] == .inactive {
 								
 								// Unselected Book
 								ZStack(alignment: .bottomTrailing) {
@@ -67,7 +65,8 @@ struct SettingsView: View {
 										.padding(5)
 								}
 								.onTapGesture {
-									books[i] = .active
+									store.books[i] = .active
+									store.saveStatus()
 								}
 							} else {
 								// Unlocked Book
@@ -85,6 +84,12 @@ struct SettingsView: View {
 										.shadow(color:.white.opacity(0.7), radius: 7)
 										.padding(5)
 								}
+								.onTapGesture {
+									let product = store.products[i-3]
+									Task {
+										await store.purchase(product)
+									}
+								}
 							}
 					}
 					}
@@ -97,10 +102,11 @@ struct SettingsView: View {
 				.doneButton()
 			}
 			.padding()
+			.foregroundColor(.black)
 		}
     }
 }
 
 #Preview {
-    SettingsView()
+	SettingsView().environmentObject(Store())
 }

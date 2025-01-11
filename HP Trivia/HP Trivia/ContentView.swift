@@ -9,6 +9,8 @@ import SwiftUI
 import AVKit
 
 struct ContentView: View {
+	@EnvironmentObject private var store: Store
+	@EnvironmentObject private var game: GameViewModel
 	
 	@State private var audioPlayer: AVAudioPlayer!
 	@State private var scalePlayButton = false
@@ -62,9 +64,9 @@ struct ContentView: View {
 								Text("Recent Scores")
 									.font(.title2)
 								
-								Text("33")
-								Text("23")
-								Text("12")
+								Text("\(game.recentScores[0])")
+								Text("\(game.recentScores[1])")
+								Text("\(game.recentScores[2])")
 							}
 							.font(.title3)
 							.padding(.horizontal)
@@ -109,7 +111,8 @@ struct ContentView: View {
 						VStack {
 							if animateViewsIn {
 								Button {
-									// Play button action
+									filterQuestion()
+									game.startGame()
 									playGame.toggle()
 								} label: {
 									Text("Play")
@@ -117,7 +120,7 @@ struct ContentView: View {
 										.foregroundColor(.white)
 										.padding(.vertical, 7)
 										.padding(.horizontal, 50)
-										.background(.brown)
+										.background(store.books.contains(.active) ? .brown : .gray)
 										.cornerRadius(7)
 								}
 								.scaleEffect(scalePlayButton ? 1.2 : 1)
@@ -129,10 +132,19 @@ struct ContentView: View {
 								.transition(.offset(y: geo.size.height / 3))
 								.fullScreenCover(isPresented: $playGame) {
 									GamePlayView()
+										.environmentObject(game)
+										.onAppear{
+											audioPlayer.setVolume(0, fadeDuration: 2)
+										}
+										.onDisappear {
+											audioPlayer.setVolume(1, fadeDuration: 3)
+										}
 								}
+								.disabled(store.books.contains(.active) ? false : true)
 							}
 						}
 						.animation(.easeOut(duration: 0.7).delay(2), value: animateViewsIn)
+						
 						
 						
 						Spacer()
@@ -151,7 +163,7 @@ struct ContentView: View {
 								}
 								.transition(.offset(x: geo.size.width / 4))
 								.sheet(isPresented: $showSettings) {
-									SettingsView()
+									SettingsView().environmentObject(store)
 								}
 							}
 						}
@@ -161,6 +173,18 @@ struct ContentView: View {
 						Spacer()
 					}
 					.frame(width: geo.size.width)
+					
+					// No books selected
+					VStack {
+						if animateViewsIn {
+							if store.books.contains(.active) == false {
+								Text("No questions available. Go to settings⬆️")
+									.multilineTextAlignment(.center)
+									.transition(.opacity)
+							}
+						}
+					}
+					.animation(.easeInOut.delay(3), value: animateViewsIn)
 					
 					Spacer()
 				}
@@ -190,8 +214,23 @@ struct ContentView: View {
 		}
 		
 	}
+	
+	private func filterQuestion(){
+		var books: [Int] = []
+		
+		for (index, status) in store.books.enumerated() {
+			if status == .active {
+				books.append(index+1)
+			}
+		}
+		
+		game.filterQuestions(to: books)
+		game.newQuestion()
+	}
 }
 
 #Preview {
-    ContentView()
+	ContentView()
+		.environmentObject(Store())
+		.environmentObject(GameViewModel())
 }
