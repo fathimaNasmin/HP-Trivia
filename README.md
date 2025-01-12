@@ -33,10 +33,9 @@ https://github.com/user-attachments/assets/215d56aa-92af-453b-a891-ee5cbafb169e
 To run the HP Trivia app locally, follow these steps:
 
 1. Clone the Repository:
-   ```
-   git clone (https://github.com/fathimaNasmin/HP-Trivia.git)
-    cd HP Trivia
-   ```
+   ```git clone https://github.com/fathimaNasmin/HP-Trivia.git```
+   ```cd HP Trivia```
+
 2. Open the Project in Xcode:
     Open ```HPTrivia.xcodeproj``` or ```HPTrivia.xcworkspace``` in Xcode.
    
