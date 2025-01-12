@@ -17,7 +17,7 @@ Welcome to HP Trivia, a magical iOS SwiftUI-based quiz application inspired by t
 - Questions focus solely on the Harry Potter book series.
 - Optimized for all iOS devices.
 
-##Demo
+## Demo
 
 https://github.com/user-attachments/assets/215d56aa-92af-453b-a891-ee5cbafb169e
 
@@ -28,7 +28,7 @@ https://github.com/user-attachments/assets/215d56aa-92af-453b-a891-ee5cbafb169e
 - Swift 6
 
   
-##Installation
+## Installation
 
 To run the HP Trivia app locally, follow these steps:
 
@@ -52,7 +52,7 @@ To run the HP Trivia app locally, follow these steps:
 
 
 
-##Technologies Used
+## Technologies Used
 
 - Swift: The programming language used for the app.
 
